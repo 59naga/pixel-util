@@ -8,8 +8,9 @@ browsers:
     version: latest
   - name: safari
     version: latest
-  - name: opera
-    version: [11,latest]
+  # Not work
+  # - name: opera
+  #   version: [11,latest]
   - name: iphone
     version: [7.1,latest]
   - name: android

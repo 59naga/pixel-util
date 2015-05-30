@@ -34,12 +34,13 @@ class PixelData extends PixelType
     new Promise (resolve,reject)=>
       image= new Image
       image.crossOrigin= 'Anonymous'
-      image.src= url
 
       image.onerror= (error)->
         reject error.message
       image.onload= =>
         resolve @getImageData image
+      
+      image.src= url
 
   fetchImageDataViaBinary: (binary)->
     @fetchImageDataViaBuffer @getBufferBinary binary
