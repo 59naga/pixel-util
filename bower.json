@@ -1,0 +1,36 @@
+{
+  "name": "pixel-util",
+  "main": "pixel-util.min.js",
+
+  "opc-scripts": {
+    "build": [
+      "browserify",
+      "src",
+      "--standalone",
+      "pixelUtil",
+
+      "--transform",
+      "coffeeify",
+      "--extension",
+      ".coffee",
+      
+      "--exclude",
+      "request"
+    ]
+  },
+
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src",
+    "test",
+    "*.coffee"
+  ],
+
+  "homepage": "https://github.com/59naga/pixel-util",
+  "authors": [
+    "59naga <i59naga@icloud.com>"
+  ],
+  "license": "MIT"
+}

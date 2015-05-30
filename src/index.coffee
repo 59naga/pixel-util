@@ -2,9 +2,10 @@
 PixelData= (require './pixel-data').PixelData
 
 Promise= require 'bluebird'
-request= require 'request'
 
-fs= require 'fs'
+unless window?
+  request= require 'request'
+  fs= require 'fs'
 
 # Public
 class PixelUtil extends PixelData
