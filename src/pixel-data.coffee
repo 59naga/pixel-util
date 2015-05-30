@@ -16,7 +16,7 @@ class PixelData extends PixelType
         @fetchImageDataViaUrl file
 
       when 'datauri'
-        @fetchImageDataViaUrl file
+        @fetchImageDataViaDatauri file
 
       when 'binary'
         @fetchImageDataViaBinary file
@@ -41,6 +41,11 @@ class PixelData extends PixelType
         resolve @getImageData image
       
       image.src= url
+
+  fetchImageDataViaDatauri: (datauri)->
+    binary= atob datauri.slice datauri.indexOf(',')+1
+    
+    @fetchImageDataViaBinary binary
 
   fetchImageDataViaBinary: (binary)->
     @fetchImageDataViaBuffer @getBufferBinary binary
