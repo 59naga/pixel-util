@@ -1,0 +1,25 @@
+ui: jasmine2
+browsers:
+  - name: chrome
+    version: latest
+  - name: ie
+    version: 9..latest
+  - name: firefox
+    version: latest
+  - name: safari
+    version: latest
+  - name: opera
+    version: [11,latest]
+  - name: iphone
+    version: [7.1,latest]
+  - name: android
+    version: [4.1,4.4,latest]
+
+browserify:
+  - transform: coffeeify
+  - transform: brfs
+  - options:
+      extensions:
+        - .js
+        - .json
+        - .coffee

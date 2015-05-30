@@ -1,0 +1,64 @@
+{
+  "name": "pixel-util",
+  "version": "0.0.0-alpha.0",
+  "description": "Utilities of pixel",
+
+  "files": [
+    "index.js",
+    "lib"
+  ],
+  "browser": {
+    "./src": false
+  },
+
+  "scripts": {
+    "start": "jasminetea test --file index.coffee --watch './**/*.coffee' --timeout 1000",
+    "localhost": "zuul test --ui jasmine2 --local 59798 --open",
+
+    "test": "jasminetea test --file index.coffee --cover --report",
+    "posttest": "zuul test && echo Perfect posttest || echo Ignored posttest",
+
+    "prepublish": "node -e \"if(process.env.TRAVIS){}else{process.exit(1)}\" && npm run compile || echo skip prepublish",
+    "compile": "coffee --bare --compile index.coffee",
+    "postcompile": "coffee --output lib --bare --compile src"
+  },
+
+  "dependencies": {
+    "bluebird": "^2.9.27",
+    "image-type": "^2.0.2",
+    "mime": "^1.3.4",
+    "request": "^2.56.0"
+  },
+  "devDependencies": {
+    "brfs": "^1.4.0",
+    "browserify": "^10.2.1",
+    "coffeeify": "^1.1.0",
+    "fixture-images": "0.1.3",
+    "jasminetea": "^0.2.0-beta.1",
+    "uglifyjs": "^2.4.10",
+    "zuul": "^3.0.0"
+  },
+
+  "keywords": [
+    "path",
+    "url",
+    "datauri",
+    "buffer",
+    "uint8array",
+    "uint8clampedarray",
+    "blob",
+    "image"
+  ],
+  "author": "59naga <i59naga@icloud.com> (http://berabou.me)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/59naga/pixel-util.git"
+  },
+  "author": "59naga <i59naga@icloud.com> (http://berabou.me)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/59naga/pixel-util/issues"
+  },
+  "homepage": "https://github.com/59naga/pixel-util#readme"
+}
