@@ -7,7 +7,8 @@ fixtureImages= require 'fixture-images'
 # Specs
 describeFuture= if ImageData? then describe else xdescribe
 describeFuture 'fetchImageData',->
-  it 'path',(done)->
+  itFuture= unless window? then it else xit
+  itFuture 'path',(done)->
     fixture= fixtureImages.path.animated.gif
 
     pixelUtil.fetchImageData fixture

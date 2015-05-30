@@ -10,6 +10,7 @@ browsers:
     version: latest
   - name: opera
     version: [11,latest]
+    platform: Linux
   - name: iphone
     version: [7.1,latest]
   - name: android

@@ -15,15 +15,16 @@
     "start": "jasminetea test --file index.coffee --watch './**/*.coffee' --timeout 1000",
     "localhost": "zuul test --ui jasmine2 --local 59798 --open",
 
-    "test": "jasminetea test --file index.coffee --cover --report",
+    "cover": "jasminetea test --file index.coffee --cover --report",
+    "test": "npm run cover",
     "posttest": "zuul test && echo Perfect posttest || echo Ignored posttest",
 
     "prepublish": "node -e \"if(process.env.TRAVIS){}else{process.exit(1)}\" && npm run compile || echo skip prepublish",
     "compile": "coffee --bare --compile index.coffee",
     "postcompile": "coffee --output lib --bare --compile src",
 
-    "build": "$(opc bower opc-scripts.build) | uglifyjs -cm > $(opc package main)",
-    "postbuild": "wc -c $(opc package main)",
+    "build": "$(opc bower opc-scripts.build) | uglifyjs -cm > $(opc bower main)",
+    "postbuild": "wc -c $(opc bower main)",
     "update": "git tag v$(opc package version) && git push --tags"
   },
   "config": {
