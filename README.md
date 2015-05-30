@@ -30,31 +30,30 @@ $ bower install pixel-util --save
 Create buffer of an argument.
 
 ```js
-// path
-pixelUtil.createBuffer('foo.png').then(function(buffer){
+var path= 'foo.png';
+pixelUtil.createBuffer(path).then(function(buffer){
   console.log(buffer instanceof Uint8Array);// true
   console.log(buffer);// <Buffer 47 49 46 38 39 ...
 });
 
-// url
-pixelUtil.createBuffer('http://example.com/foo.png').then(function(buffer){
+var url= 'http://example.com/foo.png';
+pixelUtil.createBuffer(url).then(function(buffer){
   console.log(buffer instanceof Uint8Array);// true
   console.log(buffer);// <Buffer 47 49 46 38 39 ...
 });
 
-// datauri
-pixelUtil.createBuffer('data:image/png;base64,iVBORw0KGgoAAA...').then(function(buffer){
+var datauri= 'data:image/png;base64,iVBORw0KGgoAAA...';
+pixelUtil.createBuffer(datauri).then(function(buffer){
   console.log(buffer instanceof Uint8Array);// true
   console.log(buffer);// <Buffer 47 49 46 38 39 ...
 });
 
-// binary
-pixelUtil.createBuffer('PNG\n\nIHDR``¶j\n        0PLT').then(function(buffer){
+var binary= 'PNG\n\nIHDR``¶j\n        0PLT';
+pixelUtil.createBuffer(binary).then(function(buffer){
   console.log(buffer instanceof Uint8Array);// true
   console.log(buffer);// <Buffer 47 49 46 38 39 ...
 });
 
-// buffer
 var buffer= fs.readFileSync('foo.png');
 pixelUtil.createBuffer(buffer).then(function(buffer){
   console.log(buffer instanceof Uint8Array);// true
@@ -73,14 +72,12 @@ pixelUtil.createBuffer(uint8clampedarray).then(function(buffer){
   console.log(buffer);// <Buffer 47 49 46 38 39 ...
 });
 
-// blob
 var blob= new Blob([buffer],{type:'image/png'});
 pixelUtil.createBuffer(blob).then(function(buffer){
   console.log(buffer instanceof Uint8Array);// true
   console.log(buffer);// <Buffer 47 49 46 38 39 ...
 });
 
-// image
 var image= new Image;
 image.src= 'http://example.com/foo.png';
 pixelUtil.createBuffer(image).then(function(buffer){
@@ -95,23 +92,22 @@ pixelUtil.createBuffer(image).then(function(buffer){
 > __Blob is deprecate__. Because analyze using [FileReaderSync](https://w3c.github.io/FileAPI/#FileReaderSync). But has not been implemented in the current browsers...
 
 ```js
-// path
-pixelUtil.get('foo.png');
+var path= 'foo.png';
+pixelUtil.get(path);
 //-> {ext: 'png', mime: 'image/png', type: 'path'}
 
-// url
-pixelUtil.get('http://example.com/foo.png');
+var url= 'http://example.com/foo.png';
+pixelUtil.get(url);
 //-> {ext: 'png', mime: 'image/png', type: 'url'}
 
-// datauri
-pixelUtil.get('data:image/png;base64,iVBORw0KGgoAAA...');
+var datauri= 'data:image/png;base64,iVBORw0KGgoAAA...';
+pixelUtil.get(datauri);
 //-> {ext: 'png', mime: 'image/png', type: 'datauri'}
 
-// binary
-pixelUtil.get('PNG\n\nIHDR``¶j\n        0PLT');
+var binary= 'PNG\n\nIHDR``¶j\n        0PLT';
+pixelUtil.get(binary);
 //-> {ext: 'png', mime: 'image/png', type: 'binary'}
 
-// buffer
 var buffer= fs.readFileSync('foo.png');
 pixelUtil.get(buffer);
 //-> {ext: 'png', mime: 'image/png', type: 'buffer'}
@@ -124,12 +120,10 @@ var uint8clampedarray= new Uint8ClampedArray(buffer);
 pixelUtil.get(uint8clampedarray);
 //-> {ext: 'png', mime: 'image/png', type: 'buffer'}
 
-// blob
 var blob= new Blob([buffer],{type:'image/png'});
 pixelUtil.get(blob);
 //-> {ext: 'png', mime: 'image/png', type: 'blob'}
 
-// image
 var image= new Image;
 image.src= 'http://example.com/foo.png';
 pixelUtil.get(image);
@@ -141,23 +135,22 @@ pixelUtil.get(image);
 Detect the object type of an argument.
 
 ```js
-// path
-pixelUtil.getTypeof('foo.png');
+var path= 'foo.png';
+pixelUtil.getTypeof(path);
 //-> path
 
-// url
-pixelUtil.getTypeof('http://example.com/foo.png');
+var url= 'http://example.com/foo.png';
+pixelUtil.getTypeof(url);
 //-> url
 
-// datauri
-pixelUtil.getTypeof('data:image/png;base64,iVBORw0KGgoAAA...');
+var datauri= 'data:image/png;base64,iVBORw0KGgoAAA...';
+pixelUtil.getTypeof(datauri);
 //-> datauri
 
-// binary
-pixelUtil.getTypeof('PNG\n\nIHDR``¶j\n        0PLT');
+var binary= 'PNG\n\nIHDR``¶j\n        0PLT';
+pixelUtil.getTypeof(binary);
 //-> binary
 
-// buffer
 var buffer= fs.readFileSync('foo.png');
 pixelUtil.getTypeof(buffer);
 //-> buffer
@@ -170,12 +163,10 @@ var uint8clampedarray= new Uint8ClampedArray(buffer);
 pixelUtil.getTypeof(uint8clampedarray);
 //-> buffer
 
-// blob
 var blob= new Blob([buffer],{type:'image/png'});
 pixelUtil.getTypeof(blob);
 //-> blob
 
-// image
 var image= new Image;
 image.src= 'http://example.com/foo.png';
 pixelUtil.getTypeof(image);
@@ -188,35 +179,34 @@ pixelUtil.getTypeof(image);
 Create ImageData of an argument.
 
 ```js
-// path
-pixelUtil.fetchImageData('foo.png').then(function(imageData){
+var path= 'foo.png';
+pixelUtil.fetchImageData(path).then(function(imageData){
   console.log(imageData instanceof ImageData);// true
   console.log(imageData.width);// 73
   console.log(imageData.height);// 73
 });
 
-// url
-pixelUtil.fetchImageData('http://example.com/foo.png').then(function(imageData){
+var url= 'http://example.com/foo.png';
+pixelUtil.fetchImageData(url).then(function(imageData){
   console.log(imageData instanceof ImageData);// true
   console.log(imageData.width);// 73
   console.log(imageData.height);// 73
 });
 
-// datauri
-pixelUtil.fetchImageData('data:image/png;base64,iVBORw0KGgoAAA...').then(function(imageData){
+var datauri= 'data:image/png;base64,iVBORw0KGgoAAA...';
+pixelUtil.fetchImageData(datauri).then(function(imageData){
   console.log(imageData instanceof ImageData);// true
   console.log(imageData.width);// 73
   console.log(imageData.height);// 73
 });
 
-// binary
-pixelUtil.fetchImageData('PNG\n\nIHDR``¶j\n        0PLT').then(function(imageData){
+var binary= 'PNG\n\nIHDR``¶j\n        0PLT';
+pixelUtil.fetchImageData(binary).then(function(imageData){
   console.log(imageData instanceof ImageData);// true
   console.log(imageData.width);// 73
   console.log(imageData.height);// 73
 });
 
-// buffer
 var buffer= fs.readFileSync('foo.png');
 pixelUtil.fetchImageData(buffer).then(function(imageData){
   console.log(imageData instanceof ImageData);// true
@@ -238,7 +228,6 @@ pixelUtil.fetchImageData(uint8clampedarray).then(function(imageData){
   console.log(imageData.height);// 73
 });
 
-// blob
 var blob= new Blob([buffer],{type:'image/png'});
 pixelUtil.fetchImageData(blob).then(function(imageData){
   console.log(imageData instanceof ImageData);// true
@@ -246,7 +235,6 @@ pixelUtil.fetchImageData(blob).then(function(imageData){
   console.log(imageData.height);// 73
 });
 
-// image
 var image= new Image;
 image.src= 'http://example.com/foo.png';
 pixelUtil.fetchImageData(image).then(function(imageData){
