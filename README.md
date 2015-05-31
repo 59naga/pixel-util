@@ -244,6 +244,14 @@ pixelUtil.fetchImageData(image).then(function(imageData){
 });
 ```
 
+# See
+* [pixel](https://github.com/59naga/pixel/)
+* __pixel-util__
+* [pixel-gif](https://github.com/59naga/pixel-gif-/)
+* [pixel-png](https://github.com/59naga/pixel-png/)
+* [pixel-jpg](https://github.com/59naga/pixel-jpg/)
+* [pixel-bmp](https://github.com/59naga/pixel-bmp/)
+
 License
 ---
 [MIT][License]
