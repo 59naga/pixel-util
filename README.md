@@ -25,7 +25,7 @@ $ bower install pixel-util --save
 
 # API
 
-## `pixelUtil.createBuffer`(file) -> Promise.then(`buffer`)
+## `.createBuffer`(file) -> Promise.then(`buffer`)
 
 Create buffer of an argument.
 
@@ -77,7 +77,7 @@ pixelUtil.createBuffer(image).then(function(buffer){
 });
 ```
 
-## `pixelUtil.get`(file) -> `{ext,mime,type}`
+## `.get`(file) -> `{ext,mime,type}`
 
 > Detect the image type and object type of an argument.
 > __Blob is deprecate__. Because analyze using [FileReaderSync](https://w3c.github.io/FileAPI/#FileReaderSync). But has not been implemented in the current browsers...
@@ -121,7 +121,7 @@ pixelUtil.get(image);
 //-> {ext: 'png', mime: 'image/png', type: 'image'}
 ```
 
-## `pixelUtil.getTypeof`(file) -> `type`
+## `.getTypeof`(file) -> `type`
 
 Detect the object type of an argument.
 
@@ -164,9 +164,18 @@ pixelUtil.getTypeof(image);
 //-> image
 ```
 
+## `.createImageData`(width,height) -> imageData or Object
+Return imageData has `width` and `height`.
+> Return Object like the ImageData if in Node.js
+
+```js
+pixelUtil.createImageData 59,798
+//-> <ImageData {width: 59, height: 798, data: <Uint8ClampedArray ...>}>
+```
+
 # API for browser
 
-## `pixelUtil.fetchImageData` -> Promise.then(`imageData`)
+## `.fetchImageData` -> Promise.then(`imageData`)
 Create ImageData of an argument.
 
 ```js

@@ -8,27 +8,30 @@ Promise= require 'bluebird'
 # Public
 class PixelData extends PixelType
   fetchImageData: (file)->
-    switch @getTypeof file
-      when 'path'
-        @fetchImageDataViaUrl file
+    promise=
+      switch @getTypeof file
+        when 'path'
+          @fetchImageDataViaUrl file
 
-      when 'url'
-        @fetchImageDataViaUrl file
+        when 'url'
+          @fetchImageDataViaUrl file
 
-      when 'datauri'
-        @fetchImageDataViaDatauri file
+        when 'datauri'
+          @fetchImageDataViaDatauri file
 
-      when 'binary'
-        @fetchImageDataViaBinary file
+        when 'binary'
+          @fetchImageDataViaBinary file
 
-      when 'buffer'
-        @fetchImageDataViaBuffer file
+        when 'buffer'
+          @fetchImageDataViaBuffer file
 
-      when 'blob'
-        @fetchImageDataViaBlob file
+        when 'blob'
+          @fetchImageDataViaBlob file
 
-      when 'image'
-        @fetchImageDataViaUrl file.src
+        when 'image'
+          @fetchImageDataViaUrl file.src
+    
+    promise
 
   fetchImageDataViaUrl: (url)->
     new Promise (resolve,reject)=>
@@ -70,6 +73,18 @@ class PixelData extends PixelType
     context.drawImage image,0,0
 
     context.getImageData 0,0,image.width,image.height
+
+  createImageData: (width,height)->
+    U8CA= Uint8ClampedArray ? Uint8Array
+
+    if document?
+      context= document.createElement('canvas').getContext '2d'
+
+      context.createImageData width,height
+    else
+      imageData= {width,height}
+      imageData.data= new U8CA width * height * 4
+      imageData
 
 module.exports= new PixelData
 module.exports.PixelData= PixelData

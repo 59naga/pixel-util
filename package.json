@@ -1,6 +1,6 @@
 {
   "name": "pixel-util",
-  "version": "0.0.0-alpha.2",
+  "version": "0.0.0-alpha.3",
   "description": "Utilities of pixel",
 
   "files": [
@@ -8,7 +8,8 @@
     "lib"
   ],
   "browser": {
-    "./src": false
+    "./src": false,
+    "request": false
   },
 
   "scripts": {
