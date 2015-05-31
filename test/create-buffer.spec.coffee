@@ -13,7 +13,7 @@ describe 'createBuffer',->
     pixelUtil.createBuffer fixture
     .then (buffer)->
 
-      expect(buffer instanceof Uint8Array).toBe true
+      expect(buffer instanceof Buffer).toBe true
       expect(buffer.length).toBe fixtureImages.animated.gif.length
       done()
 
@@ -23,7 +23,7 @@ describe 'createBuffer',->
     pixelUtil.createBuffer fixture
     .then (buffer)->
 
-      expect(buffer instanceof Uint8Array).toBe true
+      expect(buffer instanceof Buffer).toBe true
       expect(buffer.length).toBe fixtureImages.animated.gif.length
       done()
 
@@ -34,7 +34,7 @@ describe 'createBuffer',->
     pixelUtil.createBuffer fixture
     .then (buffer)->
 
-      expect(buffer instanceof Uint8Array).toBe true
+      expect(buffer instanceof Buffer).toBe true
       expect(buffer.length).toBe fixtureImages.animated.gif.length
       done()
 
@@ -44,7 +44,7 @@ describe 'createBuffer',->
     pixelUtil.createBuffer fixture
     .then (buffer)->
 
-      expect(buffer instanceof Uint8Array).toBe true
+      expect(buffer instanceof Buffer).toBe true
       expect(buffer.length).toBe fixtureImages.animated.gif.length
       done()
 
@@ -54,7 +54,7 @@ describe 'createBuffer',->
     pixelUtil.createBuffer fixture
     .then (buffer)->
 
-      expect(buffer instanceof Uint8Array).toBe true
+      expect(buffer instanceof Buffer).toBe true
       expect(buffer.length).toBe fixtureImages.animated.gif.length
       done()
 
@@ -64,7 +64,7 @@ describe 'createBuffer',->
     pixelUtil.createBuffer fixture
     .then (buffer)->
 
-      expect(buffer instanceof Uint8Array).toBe true
+      expect(buffer instanceof Buffer).toBe true
       expect(buffer.length).toBe fixtureImages.animated.gif.length
       done()
 
@@ -75,7 +75,7 @@ describe 'createBuffer',->
     pixelUtil.createBuffer fixture
     .then (buffer)->
 
-      expect(buffer instanceof Uint8Array).toBe true
+      expect(buffer instanceof Buffer).toBe true
       expect(buffer.length).toBe fixtureImages.animated.gif.length
       done()
 
@@ -86,7 +86,7 @@ describe 'createBuffer',->
     pixelUtil.createBuffer fixture
     .then (buffer)->
 
-      expect(buffer instanceof Uint8Array).toBe true
+      expect(buffer instanceof Buffer).toBe true
       expect(buffer.length).toBe fixtureImages.animated.gif.length
       done()
 
@@ -98,6 +98,6 @@ describe 'createBuffer',->
     pixelUtil.createBuffer fixture
     .then (buffer)->
 
-      expect(buffer instanceof Uint8Array).toBe true
+      expect(buffer instanceof Buffer).toBe true
       expect(buffer.length).toBe fixtureImages.animated.gif.length
       done()

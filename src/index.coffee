@@ -34,7 +34,7 @@ class PixelUtil extends PixelData
           @fetchBuffer file.src
 
     promise.then (arraybuffer)->
-      new Uint8Array arraybuffer
+      new Buffer arraybuffer
 
   fetchFile: (path)->
     unless window?
