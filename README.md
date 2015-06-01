@@ -139,7 +139,7 @@ var file= new File([buffer],{type:'image/png'});
 pixelUtil.detect(file).then(function(types){
   console.log(types);
 });
-//-> {ext: 'png', mime: 'image/png', type: 'blob'}
+//-> {ext: 'png', mime: 'image/png', type: 'file'}
 
 var image= new Image;
 image.src= 'http://example.com/foo.png';
@@ -189,7 +189,7 @@ pixelUtil.get(blob);
 
 var file= new File([buffer],{type:'image/png'});
 pixelUtil.get(file);
-//-> {ext: 'png', mime: 'image/png', type: 'blob'}
+//-> {ext: 'png', mime: 'image/png', type: 'file'}
 
 var image= new Image;
 image.src= 'http://example.com/foo.png';
@@ -233,6 +233,10 @@ pixelUtil.getTypeof(uint8clampedarray);
 var blob= new Blob([buffer],{type:'image/png'});
 pixelUtil.getTypeof(blob);
 //-> blob
+
+var file= new File([buffer],{type:'image/png'});
+pixelUtil.getTypeof(file);
+//-> file
 
 var image= new Image;
 image.src= 'http://example.com/foo.png';
