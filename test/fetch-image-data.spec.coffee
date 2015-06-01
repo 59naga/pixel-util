@@ -68,7 +68,8 @@ describeFuture 'fetchImageData',->
       expect(imageData.data.length).toBe imageData.width*imageData.height*4
       done()
 
-  it 'buffer',(done)->
+  itFuture= if Uint8Array? then it else xit
+  itFuture 'uint8array',(done)->
     fixture= new Uint8Array fixtureImages.animated.gif
 
     pixelUtil.fetchImageData fixture
@@ -81,7 +82,7 @@ describeFuture 'fetchImageData',->
       done()
 
   itFuture= if Uint8ClampedArray? then it else xit
-  itFuture 'buffer',(done)->
+  itFuture 'uint8clampedarray',(done)->
     fixture= new Uint8ClampedArray fixtureImages.animated.gif
 
     pixelUtil.fetchImageData fixture
@@ -93,7 +94,8 @@ describeFuture 'fetchImageData',->
       expect(imageData.data.length).toBe imageData.width*imageData.height*4
       done()
 
-  it 'blob',(done)->
+  itFuture= if Blob? then it else xit
+  itFuture 'blob',(done)->
     fixture= new Blob [fixtureImages.animated.gif],{type:'image/gif'}
 
     pixelUtil.fetchImageData fixture
@@ -105,7 +107,7 @@ describeFuture 'fetchImageData',->
       expect(imageData.data.length).toBe imageData.width*imageData.height*4
       done()
 
-  it 'file',(done)->
+  xit 'file',(done)->
     fixture= new File [fixtureImages.animated.gif],{type:'image/gif'}
 
     pixelUtil.fetchImageData fixture

@@ -6,7 +6,7 @@ pixelUtil= require '../../src'
 
 # Specs
 itFuture= if FileReaderSync? then it else xit
-describe 'File',->
+xdescribe 'File',->
   describe 'animeted',->
     itFuture 'gif',(done)->
       fixture= new File [animated.gif],{type:'image/gif'}

@@ -37,14 +37,15 @@ describe '.getTypeof',->
     type= pixelUtil.getTypeof fixture
     expect(type).toBe 'buffer'
 
-  it 'buffer',->
+  itFuture= if Uint8Array? then it else xit
+  itFuture 'uint8array',(done)->
     fixture= new Uint8Array fixtureImages.animated.gif
 
     type= pixelUtil.getTypeof fixture
     expect(type).toBe 'buffer'
 
   itFuture= if Uint8ClampedArray? then it else xit
-  itFuture 'buffer',->
+  itFuture 'uint8clampedarray',->
     fixture= new Uint8ClampedArray fixtureImages.animated.gif
 
     type= pixelUtil.getTypeof fixture
@@ -57,7 +58,8 @@ describe '.getTypeof',->
     type= pixelUtil.getTypeof fixture
     expect(type).toBe 'blob'
 
-  itFuture= if File? then it else xit
+  # itFuture= if File? then it else xit
+  itFuture= xit
   itFuture 'file',->
     fixture= new File [fixtureImages.animated.gif],{type:'image/gif'}
 
