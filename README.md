@@ -55,6 +55,12 @@ pixelUtil.createBuffer(buffer).then(function(buffer){
   console.log(buffer);// <Buffer 47 49 46 38 39 ...
 });
 
+var arraybuffer= new ArrayBuffer(buffer.length);
+new Uint8Array(arraybuffer).set(buffer);
+pixelUtil.createBuffer(arraybuffer).then(function(buffer){
+  console.log(buffer);// <Buffer 47 49 46 38 39 ...
+});
+
 var uint8array= new Buffer(buffer);
 pixelUtil.createBuffer(uint8array).then(function(buffer){
   console.log(buffer);// <Buffer 47 49 46 38 39 ...
@@ -117,17 +123,24 @@ pixelUtil.detect(buffer).then(function(types){
 });
 //-> {ext: 'png', mime: 'image/png', type: 'buffer'}
 
+var arraybuffer= new ArrayBuffer(buffer.length);
+new Uint8Array(arraybuffer).set(buffer);
+pixelUtil.detect(arraybuffer).then(function(types){
+  console.log(types);
+});
+//-> {ext: 'png', mime: 'image/png', type: 'arraybuffer'}
+
 var uint8array= new Uint8Array(buffer);
 pixelUtil.detect(uint8array).then(function(types){
   console.log(types);
 });
-//-> {ext: 'png', mime: 'image/png', type: 'buffer'}
+//-> {ext: 'png', mime: 'image/png', type: 'uint8array'}
 
 var uint8clampedarray= new Uint8ClampedArray(buffer);
 pixelUtil.detect(uint8clampedarray).then(function(types){
   console.log(types);
 });
-//-> {ext: 'png', mime: 'image/png', type: 'buffer'}
+//-> {ext: 'png', mime: 'image/png', type: 'uint8clampedarray'}
 
 var blob= new Blob([buffer],{type:'image/png'});
 pixelUtil.detect(blob).then(function(types){
@@ -174,6 +187,11 @@ pixelUtil.get(binary);
 var buffer= fs.readFileSync('foo.png');
 pixelUtil.get(buffer);
 //-> {ext: 'png', mime: 'image/png', type: 'buffer'}
+
+var arraybuffer= new ArrayBuffer(buffer.length);
+new Uint8Array(arraybuffer).set(buffer);
+pixelUtil.get(arraybuffer);
+//-> {ext: 'png', mime: 'image/png', type: 'arraybuffer'}
 
 var uint8array= new Uint8Array(buffer);
 pixelUtil.get(uint8array);
@@ -222,6 +240,10 @@ var buffer= fs.readFileSync('foo.png');
 pixelUtil.getTypeof(buffer);
 //-> buffer
 
+var arraybuffer= new ArrayBuffer(buffer.length);
+pixelUtil.getTypeof(arraybuffer);
+//-> arraybuffer
+
 var uint8array= new Uint8Array(buffer);
 pixelUtil.getTypeof(uint8array);
 //-> uint8array
@@ -244,7 +266,7 @@ pixelUtil.getTypeof(image);
 //-> image
 ```
 
-## `.createImageData`(width,height) -> imageData or Object
+## `.createImageData`(width,height) -> imageData
 Return imageData has `width` and `height`.
 > Return Object like the ImageData if in Node.js
 
@@ -289,6 +311,14 @@ pixelUtil.fetchImageData(binary).then(function(imageData){
 
 var buffer= fs.readFileSync('foo.png');
 pixelUtil.fetchImageData(buffer).then(function(imageData){
+  console.log(imageData instanceof ImageData);// true
+  console.log(imageData.width);// 73
+  console.log(imageData.height);// 73
+});
+
+var arraybuffer= new ArrayBuffer(buffer.length);
+new Uint8Array(arraybuffer).set(buffer);
+pixelUtil.fetchImageData(arraybuffer).then(function(imageData){
   console.log(imageData instanceof ImageData);// true
   console.log(imageData.width);// 73
   console.log(imageData.height);// 73
