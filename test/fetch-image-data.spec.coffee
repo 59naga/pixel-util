@@ -70,7 +70,8 @@ describeFuture 'fetchImageData',->
 
   itFuture= if ArrayBuffer? then it else xit
   itFuture 'arraybuffer',(done)->
-    fixture= new ArrayBuffer fixtureImages.animated.gif
+    fixture= new ArrayBuffer fixtureImages.animated.gif.length
+    (new Uint8Array fixture).set fixtureImages.animated.gif
 
     pixelUtil.fetchImageData fixture
     .then (imageData)->

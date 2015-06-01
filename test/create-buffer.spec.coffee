@@ -61,6 +61,7 @@ describe 'createBuffer',->
   itFuture= if ArrayBuffer? then it else xit
   itFuture 'arraybuffer',(done)->
     fixture= new ArrayBuffer fixtureImages.animated.gif.length
+    (new Uint8Array fixture).set fixtureImages.animated.gif
 
     pixelUtil.createBuffer fixture
     .then (buffer)->

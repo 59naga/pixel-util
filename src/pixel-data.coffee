@@ -21,15 +21,6 @@ class PixelData extends PixelType
         when 'binary'
           @fetchImageDataViaBinary file
 
-        when 'buffer'
-          @fetchImageDataViaBuffer file
-
-        when 'uint8array'
-          @fetchImageDataViaBuffer file
-
-        when 'uint8clampedarray'
-          @fetchImageDataViaBuffer file
-
         when 'blob'
           @fetchImageDataViaBlob file
 
@@ -38,6 +29,9 @@ class PixelData extends PixelType
 
         when 'image'
           @fetchImageDataViaUrl file.src
+
+        else
+          @fetchImageDataViaBuffer file
     
     promise
 
