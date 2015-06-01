@@ -16,7 +16,7 @@ describe 'Uint8ClampedArray',->
       .then ({ext,mime,type})->
         expect(ext).toBe 'gif'
         expect(mime).toBe 'image/gif'
-        expect(type).toBe 'buffer'
+        expect(type).toBe 'uint8clampedarray'
         done()
 
     itFuture 'png',(done)->
@@ -26,7 +26,7 @@ describe 'Uint8ClampedArray',->
       .then ({ext,mime,type})->
         expect(ext).toBe 'png'
         expect(mime).toBe 'image/png'
-        expect(type).toBe 'buffer'
+        expect(type).toBe 'uint8clampedarray'
         done()
 
     itFuture 'webp',(done)->
@@ -36,7 +36,7 @@ describe 'Uint8ClampedArray',->
       .then ({ext,mime,type})->
         expect(ext).toBe 'webp'
         expect(mime).toBe 'image/webp'
-        expect(type).toBe 'buffer'
+        expect(type).toBe 'uint8clampedarray'
         done()
 
   describe 'static',->
@@ -47,7 +47,7 @@ describe 'Uint8ClampedArray',->
       .then ({ext,mime,type})->
         expect(ext).toBe 'gif'
         expect(mime).toBe 'image/gif'
-        expect(type).toBe 'buffer'
+        expect(type).toBe 'uint8clampedarray'
         done()
 
     itFuture 'png',(done)->
@@ -57,7 +57,7 @@ describe 'Uint8ClampedArray',->
       .then ({ext,mime,type})->
         expect(ext).toBe 'png'
         expect(mime).toBe 'image/png'
-        expect(type).toBe 'buffer'
+        expect(type).toBe 'uint8clampedarray'
         done()
 
     itFuture 'webp',(done)->
@@ -67,7 +67,7 @@ describe 'Uint8ClampedArray',->
       .then ({ext,mime,type})->
         expect(ext).toBe 'webp'
         expect(mime).toBe 'image/webp'
-        expect(type).toBe 'buffer'
+        expect(type).toBe 'uint8clampedarray'
         done()
 
     itFuture 'jpg',(done)->
@@ -77,7 +77,7 @@ describe 'Uint8ClampedArray',->
       .then ({ext,mime,type})->
         expect(ext).toBe 'jpg'
         expect(mime).toBe 'image/jpeg'
-        expect(type).toBe 'buffer'
+        expect(type).toBe 'uint8clampedarray'
         done()
 
     itFuture 'tif',(done)->
@@ -87,7 +87,7 @@ describe 'Uint8ClampedArray',->
       .then ({ext,mime,type})->
         expect(ext).toBe 'tif'
         expect(mime).toBe 'image/tiff'
-        expect(type).toBe 'buffer'
+        expect(type).toBe 'uint8clampedarray'
         done()
 
     itFuture 'bmp',(done)->
@@ -97,7 +97,7 @@ describe 'Uint8ClampedArray',->
       .then ({ext,mime,type})->
         expect(ext).toBe 'bmp'
         expect(mime).toBe 'image/bmp'
-        expect(type).toBe 'buffer'
+        expect(type).toBe 'uint8clampedarray'
         done()
 
     itFuture 'jxr',(done)->
@@ -107,7 +107,7 @@ describe 'Uint8ClampedArray',->
       .then ({ext,mime,type})->
         expect(ext).toBe 'jxr'
         expect(mime).toBe 'image/vnd.ms-photo'
-        expect(type).toBe 'buffer'
+        expect(type).toBe 'uint8clampedarray'
         done()
 
     itFuture 'psd',(done)->
@@ -117,5 +117,5 @@ describe 'Uint8ClampedArray',->
       .then ({ext,mime,type})->
         expect(ext).toBe 'psd'
         expect(mime).toBe 'image/vnd.adobe.photoshop'
-        expect(type).toBe 'buffer'
+        expect(type).toBe 'uint8clampedarray'
         done()

@@ -14,7 +14,7 @@ mime.extensions['image/tiff']= 'tif'
 class PixelType
   get: (file)->
     type= @getTypeof file
-    trasted= 
+    trusted= 
       switch type
         when 'datauri'
           @getBuffer file
@@ -34,15 +34,17 @@ class PixelType
     pixelType=
       switch type
         when 'url'
-          [url,querystring]= trasted.split '?'
+          [url,querystring]= trusted.split '?'
 
           @lookupImageType url
         when 'path'
-          @lookupImageType trasted
+          @lookupImageType trusted
         when 'image'
-          @lookupImageType trasted.src
+          @lookupImageType trusted.src
         else
-          @getImageType trasted
+          @getImageType trusted
+
+    pixelType?= {}
     pixelType.type= type
 
     pixelType
@@ -67,25 +69,19 @@ class PixelType
         else
           Promise.resolve file
 
-    promise.then (trasted)=>
+    promise.then (trusted)=>
       pixelType=
         switch type
           when 'url'
-            [url,querystring]= trasted.split '?'
+            [url,querystring]= trusted.split '?'
 
             @lookupImageType url
-          when 'datauri'
-            @getImageType trasted
           when 'path'
-            @lookupImageType trasted
-          when 'binary'
-            @getImageType trasted
-          when 'buffer'
-            @getImageType trasted
-          when 'blob'
-            @getImageType trasted
+            @lookupImageType trusted
           when 'image'
-            @lookupImageType trasted.src
+            @lookupImageType trusted.src
+          else
+            @getImageType trusted
 
       pixelType?= {}
       pixelType.type= type
@@ -109,7 +105,7 @@ class PixelType
             'binary'
 
       when 'object'
-        return 'buffer' if file.length>0
+        return 'buffer' if Buffer.isBuffer file
 
         if file?.toString
           switch file.toString() 
@@ -126,6 +122,7 @@ class PixelType
         'undefined'
 
   getImageType: (buffer)->
+    buffer= new Uint8Array buffer if buffer instanceof ArrayBuffer
     imageType buffer
 
   lookupImageType: (url)->

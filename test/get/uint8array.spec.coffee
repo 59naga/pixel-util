@@ -16,7 +16,7 @@ describe 'Uint8Array',->
 
       expect(ext).toBe 'gif'
       expect(mime).toBe 'image/gif'
-      expect(type).toBe 'buffer'
+      expect(type).toBe 'uint8array'
 
     itFuture 'png',->
       fixture= new Uint8Array animated.png
@@ -25,7 +25,7 @@ describe 'Uint8Array',->
 
       expect(ext).toBe 'png'
       expect(mime).toBe 'image/png'
-      expect(type).toBe 'buffer'
+      expect(type).toBe 'uint8array'
 
     itFuture 'webp',->
       fixture= new Uint8Array animated.webp
@@ -34,7 +34,7 @@ describe 'Uint8Array',->
 
       expect(ext).toBe 'webp'
       expect(mime).toBe 'image/webp'
-      expect(type).toBe 'buffer'
+      expect(type).toBe 'uint8array'
 
   describe 'static',->
     itFuture 'gif',->
@@ -44,7 +44,7 @@ describe 'Uint8Array',->
 
       expect(ext).toBe 'gif'
       expect(mime).toBe 'image/gif'
-      expect(type).toBe 'buffer'
+      expect(type).toBe 'uint8array'
 
     itFuture 'png',->
       fixture= new Uint8Array still.png
@@ -53,7 +53,7 @@ describe 'Uint8Array',->
 
       expect(ext).toBe 'png'
       expect(mime).toBe 'image/png'
-      expect(type).toBe 'buffer'
+      expect(type).toBe 'uint8array'
 
     itFuture 'webp',->
       fixture= new Uint8Array still.webp
@@ -62,7 +62,7 @@ describe 'Uint8Array',->
 
       expect(ext).toBe 'webp'
       expect(mime).toBe 'image/webp'
-      expect(type).toBe 'buffer'
+      expect(type).toBe 'uint8array'
 
     itFuture 'jpg',->
       fixture= new Uint8Array still.jpg
@@ -71,7 +71,7 @@ describe 'Uint8Array',->
 
       expect(ext).toBe 'jpg'
       expect(mime).toBe 'image/jpeg'
-      expect(type).toBe 'buffer'
+      expect(type).toBe 'uint8array'
 
     itFuture 'tif',->
       fixture= new Uint8Array still.tif
@@ -80,7 +80,7 @@ describe 'Uint8Array',->
 
       expect(ext).toBe 'tif'
       expect(mime).toBe 'image/tiff'
-      expect(type).toBe 'buffer'
+      expect(type).toBe 'uint8array'
 
     itFuture 'bmp',->
       fixture= new Uint8Array still.bmp
@@ -89,7 +89,7 @@ describe 'Uint8Array',->
 
       expect(ext).toBe 'bmp'
       expect(mime).toBe 'image/bmp'
-      expect(type).toBe 'buffer'
+      expect(type).toBe 'uint8array'
 
     itFuture 'jxr',->
       fixture= new Uint8Array still.jxr
@@ -98,7 +98,7 @@ describe 'Uint8Array',->
 
       expect(ext).toBe 'jxr'
       expect(mime).toBe 'image/vnd.ms-photo'
-      expect(type).toBe 'buffer'
+      expect(type).toBe 'uint8array'
 
     itFuture 'psd',->
       fixture= new Uint8Array still.psd
@@ -107,4 +107,4 @@ describe 'Uint8Array',->
 
       expect(ext).toBe 'psd'
       expect(mime).toBe 'image/vnd.adobe.photoshop'
-      expect(type).toBe 'buffer'
+      expect(type).toBe 'uint8array'

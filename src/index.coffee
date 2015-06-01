@@ -23,9 +23,6 @@ class PixelUtil extends PixelData
         when 'binary'
           Promise.resolve @getBufferBinary file
 
-        when 'buffer'
-          Promise.resolve file
-
         when 'blob'
           @readAsArrayBuffer file
 
@@ -34,6 +31,9 @@ class PixelUtil extends PixelData
 
         when 'image'
           @fetchBuffer file.src
+
+        else
+          Promise.resolve file
 
     promise.then (arraybuffer)->
       new Buffer new Uint8Array arraybuffer

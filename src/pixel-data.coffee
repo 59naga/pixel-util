@@ -24,6 +24,12 @@ class PixelData extends PixelType
         when 'buffer'
           @fetchImageDataViaBuffer file
 
+        when 'uint8array'
+          @fetchImageDataViaBuffer file
+
+        when 'uint8clampedarray'
+          @fetchImageDataViaBuffer file
+
         when 'blob'
           @fetchImageDataViaBlob file
 

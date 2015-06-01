@@ -58,7 +58,19 @@ describe 'createBuffer',->
       expect(buffer.length).toBe fixtureImages.animated.gif.length
       done()
 
-  it 'buffer',(done)->
+  itFuture= if ArrayBuffer? then it else xit
+  itFuture 'arraybuffer',(done)->
+    fixture= new ArrayBuffer fixtureImages.animated.gif.length
+
+    pixelUtil.createBuffer fixture
+    .then (buffer)->
+
+      expect(Buffer.isBuffer(buffer)).toBe true
+      expect(buffer.length).toBe fixtureImages.animated.gif.length
+      done()
+
+  itFuture= if Uint8Array? then it else xit
+  itFuture 'uint8array',(done)->
     fixture= new Uint8Array fixtureImages.animated.gif
 
     pixelUtil.createBuffer fixture
@@ -69,7 +81,7 @@ describe 'createBuffer',->
       done()
 
   itFuture= if Uint8ClampedArray? then it else xit
-  itFuture 'buffer',(done)->
+  itFuture 'uint8clampedarray',(done)->
     fixture= new Uint8ClampedArray fixtureImages.animated.gif
 
     pixelUtil.createBuffer fixture
@@ -90,9 +102,8 @@ describe 'createBuffer',->
       expect(buffer.length).toBe fixtureImages.animated.gif.length
       done()
 
-  # itFuture= if File? then it else xit
-  itFuture= xit
-  itFuture 'file',(done)->
+  # File isn't constructor
+  xit 'file',(done)->
     fixture= new File [fixtureImages.animated.gif],{type:'image/gif'}
 
     pixelUtil.createBuffer fixture

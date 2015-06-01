@@ -68,6 +68,19 @@ describeFuture 'fetchImageData',->
       expect(imageData.data.length).toBe imageData.width*imageData.height*4
       done()
 
+  itFuture= if ArrayBuffer? then it else xit
+  itFuture 'arraybuffer',(done)->
+    fixture= new ArrayBuffer fixtureImages.animated.gif
+
+    pixelUtil.fetchImageData fixture
+    .then (imageData)->
+      expect(imageData instanceof ImageData).toBe true
+      
+      expect(imageData.width).toBe 73
+      expect(imageData.height).toBe 73
+      expect(imageData.data.length).toBe imageData.width*imageData.height*4
+      done()
+
   itFuture= if Uint8Array? then it else xit
   itFuture 'uint8array',(done)->
     fixture= new Uint8Array fixtureImages.animated.gif
@@ -107,6 +120,7 @@ describeFuture 'fetchImageData',->
       expect(imageData.data.length).toBe imageData.width*imageData.height*4
       done()
 
+  # File isn't constructor
   xit 'file',(done)->
     fixture= new File [fixtureImages.animated.gif],{type:'image/gif'}
 

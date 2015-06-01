@@ -177,11 +177,11 @@ pixelUtil.get(buffer);
 
 var uint8array= new Uint8Array(buffer);
 pixelUtil.get(uint8array);
-//-> {ext: 'png', mime: 'image/png', type: 'buffer'}
+//-> {ext: 'png', mime: 'image/png', type: 'uint8array'}
 
 var uint8clampedarray= new Uint8ClampedArray(buffer);
 pixelUtil.get(uint8clampedarray);
-//-> {ext: 'png', mime: 'image/png', type: 'buffer'}
+//-> {ext: 'png', mime: 'image/png', type: 'uint8clampedarray'}
 
 var blob= new Blob([buffer],{type:'image/png'});
 pixelUtil.get(blob);
@@ -224,11 +224,11 @@ pixelUtil.getTypeof(buffer);
 
 var uint8array= new Uint8Array(buffer);
 pixelUtil.getTypeof(uint8array);
-//-> buffer
+//-> uint8array
 
 var uint8clampedarray= new Uint8ClampedArray(buffer);
 pixelUtil.getTypeof(uint8clampedarray);
-//-> buffer
+//-> uint8clampedarray
 
 var blob= new Blob([buffer],{type:'image/png'});
 pixelUtil.getTypeof(blob);
