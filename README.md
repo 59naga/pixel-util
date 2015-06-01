@@ -70,6 +70,11 @@ pixelUtil.createBuffer(blob).then(function(buffer){
   console.log(buffer);// <Buffer 47 49 46 38 39 ...
 });
 
+var file= new File([buffer],{type:'image/png'});
+pixelUtil.createBuffer(file).then(function(buffer){
+  console.log(buffer);// <Buffer 47 49 46 38 39 ...
+});
+
 var image= new Image;
 image.src= 'http://example.com/foo.png';
 pixelUtil.createBuffer(image).then(function(buffer){
@@ -130,6 +135,12 @@ pixelUtil.detect(blob).then(function(types){
 });
 //-> {ext: 'png', mime: 'image/png', type: 'blob'}
 
+var file= new File([buffer],{type:'image/png'});
+pixelUtil.detect(file).then(function(types){
+  console.log(types);
+});
+//-> {ext: 'png', mime: 'image/png', type: 'blob'}
+
 var image= new Image;
 image.src= 'http://example.com/foo.png';
 pixelUtil.detect(image).then(function(types){
@@ -141,7 +152,7 @@ pixelUtil.detect(image).then(function(types){
 ## `.get`(file) -> `{ext,mime,type}`
 
 > Synchronous detection the image type and object type of an argument.
-> __Blob is deprecate__. Because analyze using [FileReaderSync](https://w3c.github.io/FileAPI/#FileReaderSync). But has not been implemented in the current browsers...
+> __Blob/File is deprecate__. Because analyze using [FileReaderSync](https://w3c.github.io/FileAPI/#FileReaderSync). But has not been implemented in the current browsers...
 
 ```js
 var path= 'foo.png';
@@ -174,6 +185,10 @@ pixelUtil.get(uint8clampedarray);
 
 var blob= new Blob([buffer],{type:'image/png'});
 pixelUtil.get(blob);
+//-> {ext: 'png', mime: 'image/png', type: 'blob'}
+
+var file= new File([buffer],{type:'image/png'});
+pixelUtil.get(file);
 //-> {ext: 'png', mime: 'image/png', type: 'blob'}
 
 var image= new Image;
@@ -291,6 +306,13 @@ pixelUtil.fetchImageData(uint8clampedarray).then(function(imageData){
 
 var blob= new Blob([buffer],{type:'image/png'});
 pixelUtil.fetchImageData(blob).then(function(imageData){
+  console.log(imageData instanceof ImageData);// true
+  console.log(imageData.width);// 73
+  console.log(imageData.height);// 73
+});
+
+var file= new File([buffer],{type:'image/png'});
+pixelUtil.fetchImageData(file).then(function(imageData){
   console.log(imageData instanceof ImageData);// true
   console.log(imageData.width);// 73
   console.log(imageData.height);// 73
