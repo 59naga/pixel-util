@@ -38,7 +38,7 @@ describe '.getTypeof',->
     expect(type).toBe 'buffer'
 
   itFuture= if Uint8Array? then it else xit
-  itFuture 'uint8array',(done)->
+  itFuture 'uint8array',->
     fixture= new Uint8Array fixtureImages.animated.gif
 
     type= pixelUtil.getTypeof fixture
