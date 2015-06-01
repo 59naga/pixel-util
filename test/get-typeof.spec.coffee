@@ -57,6 +57,13 @@ describe '.getTypeof',->
     type= pixelUtil.getTypeof fixture
     expect(type).toBe 'blob'
 
+  itFuture= if File? then it else xit
+  itFuture 'file',->
+    fixture= new File [fixtureImages.animated.gif],{type:'image/gif'}
+
+    type= pixelUtil.getTypeof fixture
+    expect(type).toBe 'file'
+
   itFuture= if Image? then it else xit
   itFuture 'image',->
     fixture= new Image

@@ -1,7 +1,6 @@
 # Dependencies
-PixelData= (require './pixel-data').PixelData
-
 Promise= require 'bluebird'
+PixelData= (require './pixel-data').PixelData
 
 unless window?
   request= require 'request'
@@ -28,6 +27,9 @@ class PixelUtil extends PixelData
           Promise.resolve file
 
         when 'blob'
+          @readAsArrayBuffer file
+
+        when 'file'
           @readAsArrayBuffer file
 
         when 'image'
@@ -68,15 +70,6 @@ class PixelUtil extends PixelData
         return reject xhr.statusText unless xhr.readyState is 4
 
         resolve xhr.response
-
-  readAsArrayBuffer: (blob)->
-    new Promise (resolve,reject)->
-      return reject undefined unless FileReader?
-
-      reader= new FileReader
-      reader.readAsArrayBuffer blob
-      reader.onload= ->
-        resolve reader.result
   
 module.exports= new PixelUtil
 module.exports.PixelUtil= PixelUtil

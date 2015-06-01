@@ -105,6 +105,18 @@ describeFuture 'fetchImageData',->
       expect(imageData.data.length).toBe imageData.width*imageData.height*4
       done()
 
+  it 'file',(done)->
+    fixture= new File [fixtureImages.animated.gif],{type:'image/gif'}
+
+    pixelUtil.fetchImageData fixture
+    .then (imageData)->
+      expect(imageData instanceof ImageData).toBe true
+      
+      expect(imageData.width).toBe 73
+      expect(imageData.height).toBe 73
+      expect(imageData.data.length).toBe imageData.width*imageData.height*4
+      done()
+
   it 'image',(done)->
     fixture= new Image
     fixture.src= fixtureImages.https.animated.gif

@@ -1,9 +1,8 @@
-# Note: API for browsers
-
 # Dependencies
+Promise= require 'bluebird'
 PixelType= (require './pixel-type').PixelType
 
-Promise= require 'bluebird'
+# Note: API for browsers
 
 # Public
 class PixelData extends PixelType
@@ -26,6 +25,9 @@ class PixelData extends PixelType
           @fetchImageDataViaBuffer file
 
         when 'blob'
+          @fetchImageDataViaBlob file
+
+        when 'file'
           @fetchImageDataViaBlob file
 
         when 'image'

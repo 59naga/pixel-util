@@ -1,4 +1,6 @@
 # Dependencies
+Promise= require 'bluebird'
+
 imageType= require 'image-type'
 mime= require 'mime'
 
@@ -21,7 +23,10 @@ class PixelType
           @getBufferBinary file
 
         when 'blob'
-          @readAsArrayBuffer file
+          @readAsArrayBufferSync file
+
+        when 'file'
+          @readAsArrayBufferSync file
 
         else
           file
@@ -32,21 +37,60 @@ class PixelType
           [url,querystring]= trasted.split '?'
 
           @lookupImageType url
-        when 'datauri'
-          @getImageType trasted
         when 'path'
           @lookupImageType trasted
-        when 'binary'
-          @getImageType trasted
-        when 'buffer'
-          @getImageType trasted
-        when 'blob'
-          @getImageType trasted
         when 'image'
           @lookupImageType trasted.src
+        else
+          @getImageType trasted
     pixelType.type= type
 
     pixelType
+
+  detect: (file)->
+    type= @getTypeof file
+
+    promise=
+      switch type
+        when 'datauri'
+          Promise.resolve @getBuffer file
+
+        when 'binary'
+          Promise.resolve @getBufferBinary file
+
+        when 'blob'
+          @readAsArrayBuffer file
+
+        when 'file'
+          @readAsArrayBuffer file
+
+        else
+          Promise.resolve file
+
+    promise.then (trasted)=>
+      pixelType=
+        switch type
+          when 'url'
+            [url,querystring]= trasted.split '?'
+
+            @lookupImageType url
+          when 'datauri'
+            @getImageType trasted
+          when 'path'
+            @lookupImageType trasted
+          when 'binary'
+            @getImageType trasted
+          when 'buffer'
+            @getImageType trasted
+          when 'blob'
+            @getImageType trasted
+          when 'image'
+            @lookupImageType trasted.src
+
+      pixelType?= {}
+      pixelType.type= type
+
+      pixelType
 
   getTypeof: (file)->
     switch typeof file
@@ -73,6 +117,8 @@ class PixelType
               'image'
               
             else
+              # eg:
+              # [object Blob] -> "blob"
               file.toString().match(/(\w+)\]/)[1].toLowerCase()
         else
           'undefined'
@@ -95,6 +141,15 @@ class PixelType
     new Buffer binary,'binary'
 
   readAsArrayBuffer: (blob)->
+    new Promise (resolve,reject)->
+      return reject new ArrayBuffer 0 unless FileReader?
+
+      reader= new FileReader
+      reader.readAsArrayBuffer blob
+      reader.onload= ->
+        resolve reader.result
+
+  readAsArrayBufferSync: (blob)->
     if FileReaderSync?
       reader= new FileReaderSync
       reader.readAsArrayBuffer blob      

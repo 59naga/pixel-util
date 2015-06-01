@@ -77,9 +77,70 @@ pixelUtil.createBuffer(image).then(function(buffer){
 });
 ```
 
+## `.detect`(file) -> Promise.then(`{ext,mime,type}`)
+
+> Asynchronous detection the image type and object type of an argument.
+
+```js
+var path= 'foo.png';
+pixelUtil.detect(path).then(function(types){
+  console.log(types);
+});
+//-> {ext: 'png', mime: 'image/png', type: 'path'}
+
+var url= 'http://example.com/foo.png';
+pixelUtil.detect(url).then(function(types){
+  console.log(types);
+});
+//-> {ext: 'png', mime: 'image/png', type: 'url'}
+
+var datauri= 'data:image/png;base64,iVBORw0KGgoAAA...';
+pixelUtil.detect(datauri).then(function(types){
+  console.log(types);
+});
+//-> {ext: 'png', mime: 'image/png', type: 'datauri'}
+
+var binary= 'PNG\n\nIHDR``¶j\n        0PLT';
+pixelUtil.detect(binary).then(function(types){
+  console.log(types);
+});
+//-> {ext: 'png', mime: 'image/png', type: 'binary'}
+
+var buffer= fs.readFileSync('foo.png');
+pixelUtil.detect(buffer).then(function(types){
+  console.log(types);
+});
+//-> {ext: 'png', mime: 'image/png', type: 'buffer'}
+
+var uint8array= new Uint8Array(buffer);
+pixelUtil.detect(uint8array).then(function(types){
+  console.log(types);
+});
+//-> {ext: 'png', mime: 'image/png', type: 'buffer'}
+
+var uint8clampedarray= new Uint8ClampedArray(buffer);
+pixelUtil.detect(uint8clampedarray).then(function(types){
+  console.log(types);
+});
+//-> {ext: 'png', mime: 'image/png', type: 'buffer'}
+
+var blob= new Blob([buffer],{type:'image/png'});
+pixelUtil.detect(blob).then(function(types){
+  console.log(types);
+});
+//-> {ext: 'png', mime: 'image/png', type: 'blob'}
+
+var image= new Image;
+image.src= 'http://example.com/foo.png';
+pixelUtil.detect(image).then(function(types){
+  console.log(types);
+});
+//-> {ext: 'png', mime: 'image/png', type: 'image'}
+```
+
 ## `.get`(file) -> `{ext,mime,type}`
 
-> Detect the image type and object type of an argument.
+> Synchronous detection the image type and object type of an argument.
 > __Blob is deprecate__. Because analyze using [FileReaderSync](https://w3c.github.io/FileAPI/#FileReaderSync). But has not been implemented in the current browsers...
 
 ```js

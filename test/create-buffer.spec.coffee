@@ -90,6 +90,17 @@ describe 'createBuffer',->
       expect(buffer.length).toBe fixtureImages.animated.gif.length
       done()
 
+  itFuture= if File? then it else xit
+  itFuture 'file',(done)->
+    fixture= new File [fixtureImages.animated.gif],{type:'image/gif'}
+
+    pixelUtil.createBuffer fixture
+    .then (buffer)->
+
+      expect(Buffer.isBuffer(buffer)).toBe true
+      expect(buffer.length).toBe fixtureImages.animated.gif.length
+      done()
+
   itFuture= if Image? then it else xit
   itFuture 'image',(done)->
     fixture= new Image
