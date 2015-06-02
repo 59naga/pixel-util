@@ -98,7 +98,7 @@ class PixelType
           when file.match /^data:image\//
             'datauri'
 
-          when file.match /^[\w\-\/\\.~ ]+$/
+          when file.match /^(?:\w:)?[\w\-\/\\.~ ]+$/
             'path'
 
           else

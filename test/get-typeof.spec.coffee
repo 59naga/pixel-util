@@ -12,6 +12,12 @@ describe '.getTypeof',->
     type= pixelUtil.getTypeof fixture
     expect(type).toBe 'path'
 
+    # Fixed #1
+    fixture= 'C:\\Users\\IEUser\\Downloads\\pixel-util\\node_modules\\fixture-images\\still.WEBP'
+
+    type= pixelUtil.getTypeof fixture
+    expect(type).toBe 'path'
+
   it 'url',->
     fixture= fixtureImages.https.animated.gif
 
