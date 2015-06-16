@@ -21,7 +21,7 @@
     "prepublish": "node -e \"if(process.env.TRAVIS){}else{process.exit(1)}\" && npm run compile || echo skip prepublish",
     "compile": "coffee --bare --compile index.coffee",
     "postcompile": "coffee --output lib --bare --compile src",
-    "postpublish": "zuul test && echo Perfect posttest || echo Ignored posttest",
+    "postpublish": "zuul test",
 
     "prebuild": "$(opc bower opc-scripts.build) | exorcist $(opc bower name).js.map > $(opc bower name).js",
     "build": "$(opc bower opc-scripts.uglify)",

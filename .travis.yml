@@ -25,6 +25,7 @@ env:
 # Npm publish options
 before_deploy:
   - npm install coffee-script --global
+  - npm install zuul --global
 deploy:
   provider: npm
   email: i59naga@icloud.com
