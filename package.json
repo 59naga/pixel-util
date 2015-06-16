@@ -17,11 +17,11 @@
     "localhost": "zuul test --ui jasmine2 --local 59798 --open",
 
     "test": "jasminetea --file index.coffee --cover --report --lint",
+    "test-cloud": "zuul test",
 
     "prepublish": "node -e \"if(process.env.TRAVIS){}else{process.exit(1)}\" && npm run compile || echo skip prepublish",
     "compile": "coffee --bare --compile index.coffee",
     "postcompile": "coffee --output lib --bare --compile src",
-    "postpublish": "zuul test",
 
     "prebuild": "$(opc bower opc-scripts.build) | exorcist $(opc bower name).js.map > $(opc bower name).js",
     "build": "$(opc bower opc-scripts.uglify)",
