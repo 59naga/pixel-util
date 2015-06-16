@@ -65,7 +65,7 @@ class PixelData extends PixelType
     @fetchImageDataViaUrl url.createObjectURL blob
 
   fetchObjectUrl: (blob)->
-    new Promise (resolve,reject)=>
+    new Promise (resolve,reject)->
       resolve blob
 
   getImageData: (image)->
@@ -87,6 +87,22 @@ class PixelData extends PixelType
       imageData= {width,height}
       imageData.data= new U8CA width * height * 4
       imageData
+
+  set: (to,from)->
+    dataType= Object.prototype.toString.call to.data
+
+    unless to.data.set?
+      if to.data.length isnt from.data.length
+        throw new RangeError "Source is invalid(#{to.data.length} == #{from.data.length})"
+
+      i= 0
+      while from.data[i]?
+        to.data[i]= from.data[i]
+
+        i++
+
+    else
+      to.data.set from.data
 
 module.exports= new PixelData
 module.exports.PixelData= PixelData

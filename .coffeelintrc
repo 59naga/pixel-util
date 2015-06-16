@@ -1,0 +1,23 @@
+{
+  "cyclomatic_complexity": {
+    "value": 10,
+    "level": "error"
+  },
+  "max_line_length": {
+    "value": 100,
+    "level": "error",
+    "limitComments": true
+  },
+  "no_stand_alone_at": {
+    "level": "error"
+  },
+  "no_unnecessary_double_quotes": {
+    "level": "error"
+  },
+  "prefer_english_operator": {
+    "level": "error"
+  },
+  "ensure_comprehensions": {
+    "level": "ignore"
+  }
+}

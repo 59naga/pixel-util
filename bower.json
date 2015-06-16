@@ -4,19 +4,33 @@
 
   "opc-scripts": {
     "build": [
-      "browserify",
-      "src",
-      "--standalone",
-      "pixelUtil",
+      "browserify ./src",
 
-      "--transform",
-      "coffeeify",
-      "--extension",
-      ".coffee",
+      "--transform coffeeify",
+      "--extension .coffee",
+
+      "--standalone pixel-util",
       
       "--exclude",
-      "request"
-    ]
+      "request",
+
+      "--debug"
+    ],
+    "uglify": [
+      "uglifyjs",
+
+      "pixel-util.js",
+      "--in-source-map",
+      "pixel-util.js.map",
+
+      "--mangle",
+      "--compress",
+
+      "--output",
+      "pixel-util.min.js",
+      "--source-map",
+      "pixel-util.min.js.map"
+     ]
   },
 
   "ignore": [

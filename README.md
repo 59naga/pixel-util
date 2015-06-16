@@ -277,7 +277,7 @@ pixelUtil.createImageData 59,798
 
 # API for browser
 
-## `.fetchImageData` -> Promise.then(`imageData`)
+## `.fetchImageData`(file) -> Promise.then(`imageData`)
 Create ImageData of an argument.
 
 ```js
@@ -358,6 +358,28 @@ pixelUtil.fetchImageData(image).then(function(imageData){
   console.log(imageData instanceof ImageData);// true
   console.log(imageData.width);// 73
   console.log(imageData.height);// 73
+});
+```
+
+## `.set`(imageData,source) polyfill under IE11
+
+Instance of imageData.data is `CanvasPixelArray` if __IE10 or less__.
+That hasn't a `.set` method of `Uint8Array`, Change the `imageData.data` using `pixelUtil.set` with `source.data`.
+
+```js
+var image= new Image;
+image.src= 'http://example.com/foo.png';
+pixelUtil.fetchImageData(image).then(function(imageData){
+  var source= {data:new Array(imageData.data.length)};
+  for(var i= 0; i< imageData.data.length; i++){
+    source.data[i]= 0;
+  }
+  source.data[0]= 255;
+
+  pixelUtl.set(imageData,source); // undefined
+
+  console.log(imageData[0]); // 255
+  console.log(imageData[imageData.data.length-1]); // 0
 });
 ```
 

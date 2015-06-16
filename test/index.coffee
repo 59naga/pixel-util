@@ -3,6 +3,7 @@ jasmine.DEFAULT_TIMEOUT_INTERVAL= 3000
 
 require './create-buffer.spec'
 require './create-image-data.spec'
+require './set.spec'
 
 require './fetch-image-data.spec'
 

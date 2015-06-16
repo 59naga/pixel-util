@@ -14,7 +14,7 @@ mime.extensions['image/tiff']= 'tif'
 class PixelType
   get: (file)->
     type= @getTypeof file
-    trusted= 
+    trusted=
       switch type
         when 'datauri'
           @getBuffer file
@@ -89,7 +89,11 @@ class PixelType
       pixelType
 
   getTypeof: (file)->
-    switch typeof file
+    return 'buffer' if Buffer.isBuffer file
+
+    type= Object.prototype.toString.call file
+    type= type.toString().match(/(\w+)\]/)[1].toLowerCase()
+    switch type
       when 'string'
         switch
           when file.match /^https?:\/\//
@@ -104,22 +108,11 @@ class PixelType
           else
             'binary'
 
-      when 'object'
-        return 'buffer' if Buffer.isBuffer file
+      when 'htmlimageelement'
+        'image'
 
-        if file?.toString
-          switch file.toString() 
-            when '[object HTMLImageElement]'
-              'image'
-              
-            else
-              # eg:
-              # [object Blob] -> "blob"
-              file.toString().match(/(\w+)\]/)[1].toLowerCase()
-        else
-          'undefined'
       else
-        'undefined'
+        type
 
   getImageType: (buffer)->
     buffer= new Uint8Array buffer if buffer instanceof ArrayBuffer
@@ -149,7 +142,7 @@ class PixelType
   readAsArrayBufferSync: (blob)->
     if FileReaderSync?
       reader= new FileReaderSync
-      reader.readAsArrayBuffer blob      
+      reader.readAsArrayBuffer blob
     else
       new ArrayBuffer 0
 
