@@ -383,13 +383,15 @@ pixelUtil.fetchImageData(image).then(function(imageData){
 });
 ```
 
-# See
+# Related projects
 * [pixel](https://github.com/59naga/pixel/)
 * __pixel-util__
 * [pixel-gif](https://github.com/59naga/pixel-gif-/)
 * [pixel-png](https://github.com/59naga/pixel-png/)
 * [pixel-jpg](https://github.com/59naga/pixel-jpg/)
 * [pixel-bmp](https://github.com/59naga/pixel-bmp/)
+* [pixel-to-ansi](https://github.com/59naga/pixel-to-ansi/)
+* [pixel-to-svg](https://github.com/59naga/pixel-to-svg/)
 
 License
 ---
