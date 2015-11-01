@@ -2,8 +2,8 @@
 Promise= require 'bluebird'
 PixelData= (require './pixel-data').PixelData
 
+request= require 'superagent'
 unless window?
-  request= require 'request'
   fs= require 'fs'
 
 # Public
@@ -48,10 +48,12 @@ class PixelUtil extends PixelData
   fetchBuffer: (url)->
     unless window?
       new Promise (resolve,reject)->
-        request {url:url,encoding:null},(error,response,buffer)->
+        request url
+        .buffer()
+        .end (error,response)->
           return reject error if error?
 
-          resolve buffer
+          resolve response.body
 
     else
       @fetchArrayBuffer url

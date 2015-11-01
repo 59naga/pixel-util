@@ -18,7 +18,7 @@ describe 'createBuffer',->
       done()
 
   it 'url',(done)->
-    fixture= fixtureImages.https.animated.gif
+    fixture= fixtureImages.http.animated.gif
 
     pixelUtil.createBuffer fixture
     .then (buffer)->
