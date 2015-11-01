@@ -9,10 +9,7 @@
       "--transform coffeeify",
       "--extension .coffee",
 
-      "--standalone pixel-util",
-      
-      "--exclude",
-      "request",
+      "--standalone pixelUtil",
 
       "--debug"
     ],

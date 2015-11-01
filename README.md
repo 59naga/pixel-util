@@ -3,7 +3,9 @@
 [![Sauce Test Status][sauce-image]][sauce]
 
 ## Installation
+
 ### Via npm
+
 ```bash
 $ npm install pixel-util --save
 ```
@@ -13,6 +15,7 @@ console.log(pixelUtil); //object
 ```
 
 ### Via bower
+
 ```bash
 $ bower install pixel-util --save
 ```
