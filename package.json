@@ -1,6 +1,6 @@
 {
   "name": "pixel-util",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Utilities of pixel",
 
   "main": "lib",
@@ -16,8 +16,7 @@
     "test-cloud": "zuul test",
 
     "prepublish": "node -e \"if(process.env.TRAVIS){}else{process.exit(1)}\" && npm run compile || echo skip prepublish",
-    "compile": "coffee --bare --compile index.coffee",
-    "postcompile": "coffee --output lib --bare --compile src",
+    "compile": "coffee --output lib --bare --compile src",
 
     "prebuild": "$(opc bower opc-scripts.build) | exorcist $(opc bower name).js.map > $(opc bower name).js",
     "build": "$(opc bower opc-scripts.uglify)",
