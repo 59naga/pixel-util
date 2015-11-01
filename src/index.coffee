@@ -2,8 +2,8 @@
 Promise= require 'bluebird'
 PixelData= (require './pixel-data').PixelData
 
-superagent= require 'superagent'
 unless window?
+  request= require 'request'
   fs= require 'fs'
 
 # Public
@@ -46,13 +46,30 @@ class PixelUtil extends PixelData
       @fetchBuffer path
 
   fetchBuffer: (url)->
+    unless window?
+      new Promise (resolve,reject)->
+        request {url:url,encoding:null},(error,response,buffer)->
+          return reject error if error?
+
+          resolve buffer
+
+    else
+      @fetchArrayBuffer url
+
+  fetchArrayBuffer: (url)->
     new Promise (resolve,reject)->
-      superagent url
-      .buffer()
-      .end (error,response)->
-        return reject error if error?
+      xhr= new XMLHttpRequest
+      xhr.open 'GET',url,true
+      xhr.responseType= 'arraybuffer'
+      xhr.send()
 
-        resolve response.body
+      xhr.onerror= (error)->
+        return reject xhr.statusText
 
+      xhr.onload= ->
+        return reject xhr.statusText unless xhr.readyState is 4
+
+        resolve xhr.response
+  
 module.exports= new PixelUtil
 module.exports.PixelUtil= PixelUtil

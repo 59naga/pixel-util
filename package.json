@@ -1,6 +1,6 @@
 {
   "name": "pixel-util",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Utilities of pixel",
 
   "main": "lib",
@@ -8,7 +8,8 @@
     "lib"
   ],
   "browser": {   
-    "fs": false
+    "fs": false,
+    "request": false
   },
 
   "scripts": {
@@ -36,7 +37,7 @@
     "bluebird": "^2.9.27",
     "image-type": "^2.0.2",
     "mime": "^1.3.4",
-    "superagent": "^1.4.0"
+    "request": "^2.65.0"
   },
   "devDependencies": {
     "brfs": "^1.4.0",
